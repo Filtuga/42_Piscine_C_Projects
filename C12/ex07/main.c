@@ -1,0 +1,62 @@
+#include "ft_list.h"
+
+void	ft_free_data(void *data);
+
+void	ft_display_all_elem(t_list *element)
+{
+	while (element != NULL)
+	{
+		printf("%s\n", (char *)element->data);
+		element = element->next;
+	}
+}
+
+t_list	*ft_create_elem(void *data)
+{
+	t_list	*new_elem;
+
+	new_elem = malloc(sizeof(t_list));
+	if (!new_elem)
+		return (0);
+	new_elem->data = data;
+	new_elem->next = NULL;
+	return (new_elem);
+}
+
+t_list	*ft_list_push_strs(int size, char **strs)
+{
+	if (size <= 0 || !strs[0])
+		return (0);
+	
+	t_list	*front_elem = NULL;
+	t_list	*new_elem;
+	int		i;
+
+	i = 0;
+	while (i < size)
+	{
+		new_elem = ft_create_elem(strs[i]);
+		if (!new_elem)
+			return (0);
+		new_elem->next = front_elem;
+		front_elem = new_elem;
+		i++;
+	}
+	return (front_elem);
+}
+
+int		main(int argc, char **argv)
+{
+	t_list	*p = NULL;
+	t_list	*ptr = p;
+
+	p = ft_list_push_strs(argc - 1, argv + 1);
+	if (p)
+		ft_display_all_elem(p);
+	else
+		printf("no elements.\n");
+	
+	ptr = ft_list_at(p, 2);
+	printf("element at index 2: %s\n", (char *)ptr->data);	
+	return (0);
+}
