@@ -1,7 +1,0 @@
-{
-	"C_Cpp.errorSquiggles": "disabled",
-	"files.associations": {
-		"ft_list.h": "c"
-	},
-	"C_Cpp.default.compilerPath": "c:\\msys64\\clang64.exe"
-}
